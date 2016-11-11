@@ -1,0 +1,121 @@
+CREATE TABLE Category
+(
+Category_ID int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (Category_ID),
+Category_Title varchar(255) not null
+)
+
+
+
+
+CREATE TABLE SubCategory
+(
+SubCategory_ID int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (SubCategory_ID),
+SubCategory_Title varchar(255) not null,
+Category_ID int not null,
+FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID)
+)
+
+
+CREATE TABLE Brand
+(
+brand_ID int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (brand_ID),
+brand_Title varchar(255) not null
+
+)
+
+CREATE TABLE Products
+(
+Product_ID int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (Product_ID),
+brand_ID int not null,
+SubCategory_ID int not null,
+FOREIGN KEY (SubCategory_ID) REFERENCES SubCategory(SubCategory_ID),
+FOREIGN KEY (brand_ID) REFERENCES Brand(brand_ID),
+Quantity int not null,
+price varchar(255) not null,
+reduced_price varchar(255) not null,
+Description varchar(255) not null,
+Featured int not null,
+Image varchar(255) not null
+)
+
+
+CREATE TABLE Users
+(
+User_ID int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (User_ID),
+UserName varchar(255) not null,
+Password varchar(255) not null,
+Email varchar(255) not null,
+City varchar(255) not null,
+State varchar(255) not null,
+Zip varchar(255) not null,
+Address varchar(255) not null,
+Birthday date ,
+Verified int not null,
+Admin int not null
+)
+
+
+CREATE TABLE Cart
+(
+Cart_ID int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (Cart_ID),
+User_ID int not null,
+FOREIGN KEY (User_ID) REFERENCES Users(User_ID),
+Quantity varchar(255)
+)
+
+CREATE TABLE Orders
+(
+Order_ID int NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (Order_ID),
+User_ID int not null,
+FOREIGN KEY (User_ID) REFERENCES Users(User_ID),
+Quantity varchar(255),
+Product_ID int not null,
+FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID),
+Name varchar(255) not null,
+City varchar(255) not null,
+State varchar(255) not null,
+Zip varchar(255) not null,
+Address varchar(255) not null,
+Phone varchar(255) not null
+)
+
+
+
+
+
+
+
+
+
+
+INSERT INTO `brand` VALUES
+(1, 'Apple'),
+(2, 'ASUS' ),
+(3, 'Beats by Dr. Dre'),
+(4, 'Bose'),
+(5, 'Blackberry'),
+(6, 'Canon'),
+(7, 'DELL'),
+(8, 'GoPro'),
+(9, 'HP'),
+(10, 'Lenovo'),
+(11, 'LG'),
+(12, 'Logitech'),
+(13, 'Microsoft'),
+(14, 'Nikon Cameras'),
+(15, 'Panasonic'),
+(16, 'Samsung'),
+(17, 'Sony'),
+(18, 'Toshiba'),
+(19, 'Turtle Beach'),
+(20, 'CyberPowerPC'),
+(21, 'Astro'),
+(22, 'EA'),
+(23, 'Other');
